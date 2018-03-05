@@ -1,17 +1,17 @@
 <template>
   <div :class="{modal: true, 'modal--visible': isOpen}" role="dialog" @click.self="close">
-    <div class="modal-backdrop" />
-    <div class="modal-dialog" ref="modal" aria-modal="true" :aria-labelledby="`vue-${_uid}-title`" @keydown="keyHandle">
+    <div class="modal__backdrop" />
+    <div class="modal__dialog" ref="modal" aria-modal="true" :aria-labelledby="`vue-${_uid}-title`" @keydown="keyHandle">
       <div class="modal-content">
-        <div class="modal-header">
-          <h4 :id="`vue-${_uid}-title`" class="modal-title">
+        <div class="modal__header">
+          <h4 :id="`vue-${_uid}-title`" class="modal__title">
             <slot name="title" />
           </h4>
         </div>
-        <div ref="body" class="modal-body">
+        <div ref="body" class="modal__body">
           <slot />
         </div>
-        <div class="modal-footer">
+        <div class="modal__footer">
           <UiButton v-if="dismissLabel" @click="close">{{ dismissLabel }}</UiButton>
           <slot name="button" />
         </div>
@@ -106,7 +106,7 @@ export default {
   transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.modal-backdrop {
+.modal__backdrop {
   opacity: 1;
   transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   top: 0;
@@ -120,7 +120,7 @@ export default {
   -webkit-tap-highlight-color: transparent
 }
 
-.modal-dialog {
+.modal__dialog {
   max-width: 600px;
   flex: 0 1 auto;
   margin: 32px;
@@ -133,24 +133,24 @@ export default {
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
 
-.modal-header {
+.modal__header {
   flex: 0 0 auto;
   margin: 0;
   padding: 24px 24px 20px 24px;
 }
 
-.modal-title {
+.modal__title {
   margin: 0;
   font-size: 1.2rem;
 }
 
-.modal-body {
+.modal__body {
   flex: 1 1 auto;
   padding: 0 24px 24px 24px;
   overflow-y: auto;
 }
 
-.modal-footer {
+.modal__footer {
   flex: 0 0 auto;
   margin: 8px 4px;
   display: flex;
@@ -158,7 +158,7 @@ export default {
   justify-content: flex-end;
 }
 
-.modal-footer > * + * {
+.modal__footer > * + * {
   margin-left: .5rem;
 }
 </style>

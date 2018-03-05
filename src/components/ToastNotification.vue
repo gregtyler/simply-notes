@@ -1,5 +1,5 @@
 <template>
-  <div :class="{toast: true, 'toast-danger': danger, 'toast-autohide': !persist}" aria-live="polite" @animationend="removeIfFinished" ref="toast">
+  <div :class="{toast: true, 'toast--danger': danger, 'toast--autohide': !persist}" aria-live="polite" @animationend="removeIfFinished" ref="toast">
     {{body}}
   </div>
 </template>
@@ -128,15 +128,11 @@ export default {
   animation: toast-enter .25s ease-out
 }
 
-.toast-autohide {
+.toast--autohide {
   animation: toast-enter .25s ease-out, toast-exit .5s 2.25s ease-out forwards
 }
 
-.toast-hide {
-    animation: toast-exit .5s ease-out forwards
-}
-
-.toast-danger {
+.toast--danger {
     background-color: #d9534f
 }
 </style>
