@@ -53,6 +53,6 @@ export default {
 }
 
 .btn:active {
-  background-color: #ff6090;
+  background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.2));
 }
 </style>

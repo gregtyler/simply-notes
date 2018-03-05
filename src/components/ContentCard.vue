@@ -1,7 +1,10 @@
 <template lang="html">
-  <div class="card" @click="doAction">
+  <div :class="{card: true, 'card--fullscreen': isFullscreen}" @click="doAction">
     <h2 v-if="title">{{ title }}</h2>
-    <slot />
+    <div class="card__body"><slot /></div>
+    <div v-if="$slots.button" class="card__actions">
+      <slot name="button" />
+    </div>
   </div>
 </template>
 
@@ -17,12 +20,16 @@ export default {
       type: Object,
       default: null,
       required: false
+    },
+    isFullscreen: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   methods: {
     doAction() {
       if (this.to) {
-        console.log(this.to);
         this.$router.push(this.to);
       }
     }
@@ -34,5 +41,19 @@ export default {
 .card {
   padding: .5rem;
   background-color: #FFF;
+}
+
+.card--fullscreen {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.card--fullscreen > .card__body {
+  flex: auto;
+}
+
+.card__actions {
+  text-align: right;
 }
 </style>

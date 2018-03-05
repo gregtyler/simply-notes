@@ -1,13 +1,11 @@
 <template lang="html">
-  <ContentCard class="form">
+  <ContentCard :isFullscreen="true">
     <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title">
 
     <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex"></textarea>
 
-    <div class="form__actions">
-      <UiButton :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
-      <UiButton flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
-    </div>
+    <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
+    <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
   </ContentCard>
 </template>
 
@@ -60,12 +58,6 @@ export default {
 </script>
 
 <style lang="css">
-.form {
-  display: flex;
-  flex-direction: column;
-  flex: auto;
-}
-
 .form__input {
   display: block;
   width: 100%;
