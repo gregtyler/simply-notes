@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import router from '../router';
-
 export default {
   props: {
     title: {
@@ -24,7 +22,7 @@ export default {
   methods: {
     doAction() {
       if (this.to) {
-        router.push(this.to);
+        this.$router.push(this.to);
       }
     }
   }

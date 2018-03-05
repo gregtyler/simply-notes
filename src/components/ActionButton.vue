@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import router from '../router';
-
 export default {
   props: {
     to: {
@@ -16,7 +14,7 @@ export default {
   methods: {
     doAction() {
       if (this.to) {
-        router.push(this.to);
+        this.$router.push(this.to);
       } else {
         this.$emit('click');
       }
