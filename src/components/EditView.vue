@@ -1,8 +1,8 @@
 <template lang="html">
   <ContentCard :is-fullscreen="true">
-    <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title">
+    <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title" :autofocus="isNew">
 
-    <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex" autofocus></textarea>
+    <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex" :autofocus="!isNew"></textarea>
 
     <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
     <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
@@ -23,7 +23,7 @@ export default {
     if (this.$route.params.id) {
       const note = this.$store.state.notes.find(note => note.id === parseInt(this.$route.params.id, 10));
       return {
-        id: this.$route.params.id,
+        id: parseInt(this.$route.params.id, 10),
         isNew: false,
         title: note.title,
         body: note.body

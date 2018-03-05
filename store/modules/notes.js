@@ -19,15 +19,15 @@ export default {
       const date = new Date();
       details.updatedAt = date;
 
-      return db.notes.update(parseInt(id, 10), details).then(key => {
-        return db.notes.get(key);
+      return db.notes.update(id, details).then(() => {
+        return db.notes.get(id);
       }).then(note => {
         context.commit(EDIT_NOTE, note);
         return note;
       });
     },
     [DELETE_NOTE](context, id) {
-      return db.notes.delete(parseInt(id, 10)).then(() => {
+      return db.notes.delete(id).then(() => {
         context.commit(DELETE_NOTE, id);
       });
     }

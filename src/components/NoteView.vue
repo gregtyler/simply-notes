@@ -1,6 +1,6 @@
 <template lang="html">
   <ContentCard :title="note.title" :is-fullscreen="true">
-    <div>{{ note.body }}</div>
+    <p style="white-space: pre">{{ note.body }}</p>
 
     <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">🗑️ Delete</UiButton>
     <UiButton slot="button" :to="{name: 'edit', id: note.id}" flavour="primary">Edit</UiButton>

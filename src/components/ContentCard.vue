@@ -1,6 +1,6 @@
 <template lang="html">
   <div :class="{card: true, 'card--fullscreen': isFullscreen}" @click="doAction">
-    <h2 v-if="title">{{ title }}</h2>
+    <h2 class="card__title" v-if="title">{{ title }}</h2>
     <div class="card__body"><slot /></div>
     <div v-if="$slots.button" class="card__actions">
       <slot name="button" />
@@ -53,6 +53,12 @@ export default {
   flex: auto;
   display: flex;
   flex-direction: column;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: normal;
 }
 
 .card__actions {
