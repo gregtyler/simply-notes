@@ -1,10 +1,16 @@
 <template lang="html">
-  <CardList>
-    <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="`/` + note.id">
-      {{ note.title }}
-    </ContentCard>
+  <div>
+    <CardList v-if="$store.state.notes.length">
+      <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="`/` + note.id">
+        {{ note.title }}
+      </ContentCard>
+    </CardList>
+    <div v-else class="empty-state">
+      <div style="font-size:6rem;">🗋</div>
+      <div>You don't have any notes yet.</dir>
+    </div>
     <ActionButton to="/compose">+</ActionButton>
-  </CardList>
+  </div>
 </template>
 
 <script>
@@ -30,3 +36,14 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+}
+</style>
