@@ -1,7 +1,7 @@
-import Dexie from 'dexie';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {POPULATE} from './mutation-types.js';
+import db from './db/notes.js';
 import app from './modules/app.js';
 import notes from './modules/notes.js';
 
@@ -13,12 +13,6 @@ const store = new Vuex.Store({
     app,
     notes
   }
-});
-
-// Setup database
-const db = new Dexie('notes_db');
-db.version(1).stores({
-  notes: '++id,title,type,body,createdAt,updatedAt'
 });
 
 // Get notes from Dexie and put them in state
