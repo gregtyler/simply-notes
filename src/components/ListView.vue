@@ -1,19 +1,21 @@
 <template lang="html">
-  <div>
+  <CardList>
     <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="`/` + note.id">
       {{ note.title }}
     </ContentCard>
     <ActionButton to="/compose">+</ActionButton>
-  </div>
+  </CardList>
 </template>
 
 <script>
 import ActionButton from './ActionButton.vue';
+import CardList from './CardList.vue';
 import ContentCard from './ContentCard.vue';
 
 export default {
   components: {
     ActionButton,
+    CardList,
     ContentCard
   },
   methods: {

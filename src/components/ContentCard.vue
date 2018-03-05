@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="card" @click="doAction">
-    <h1 v-if="title">{{ title }}</h1>
+    <h2 v-if="title">{{ title }}</h2>
     <slot />
   </div>
 </template>
@@ -31,10 +31,7 @@ export default {
 
 <style lang="css">
 .card {
-  margin: .5rem;
   padding: .5rem;
   background-color: #FFF;
-  border-radius: .1rem;
-  box-shadow: 0 2px .25rem hsla(0, 0%, 0%, 0.1);
 }
 </style>

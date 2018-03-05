@@ -1,9 +1,14 @@
 <template lang="html">
-  <button class="action-button" type="button" @click="doAction">+</button>
+  <UiButton class="btn--action" @click="doAction" :to="to">+</UiButton>
 </template>
 
 <script>
+import UiButton from './UiButton.vue';
+
 export default {
+  components: {
+    UiButton
+  },
   props: {
     to: {
       type: String,
@@ -24,7 +29,7 @@ export default {
 </script>
 
 <style lang="css">
-.action-button {
+.btn--action {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,15 +39,7 @@ export default {
   width: 3rem;
   height: 3rem;
   padding: 1rem;
-  border: none;
   border-radius: 100%;
-  background-color: var(--color-secondary);
-  color: var(--color-secondary-text);
-  font-size: 1rem;
   box-shadow: 0 .5rem .25rem hsla(0, 0%, 0%, 0.1);
-}
-
-.action-button:active {
-  background-color: #ff6090;
 }
 </style>

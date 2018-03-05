@@ -1,0 +1,23 @@
+<template lang="html">
+  <div class="card-list">
+    <slot />
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="css">
+.card-list {
+  margin: .5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: .5rem;
+}
+
+.card-list > .card {
+  border-radius: .1rem;
+  box-shadow: 0 2px .25rem hsla(0, 0%, 0%, 0.1);
+}
+</style>
