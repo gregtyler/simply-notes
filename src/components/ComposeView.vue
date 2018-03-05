@@ -6,7 +6,7 @@
 
     <div class="form__actions">
       <UiButton to="/">Cancel</UiButton>
-      <UiButton @click="saveNote()">Add note</UiButton>
+      <UiButton flavour="primary" @click="saveNote()">Add note</UiButton>
     </div>
   </ContentCard>
 </template>
@@ -61,6 +61,7 @@ export default {
 
 .form__input--flex {
   flex: auto;
+  resize: none;
 }
 
 .form__actions {

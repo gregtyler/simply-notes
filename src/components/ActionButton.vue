@@ -1,5 +1,5 @@
 <template lang="html">
-  <UiButton class="btn--action" @click="doAction" :to="to">+</UiButton>
+  <UiButton flavour="secondary" class="btn--action" @click="doAction" :to="to">+</UiButton>
 </template>
 
 <script>
@@ -40,6 +40,6 @@ export default {
   height: 3rem;
   padding: 0;
   border-radius: 100%;
-  box-shadow: 0 .5rem .25rem hsla(0, 0%, 0%, 0.1);
+  box-shadow: 0 0 2px hsla(0, 0%, 0%, .12), 0 .5rem .25rem hsla(0, 0%, 0%, 0.1);
 }
 </style>
