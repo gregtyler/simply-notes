@@ -79,7 +79,7 @@ export default {
       document.removeEventListener('focusin', this.focusLock);
     },
     focusLock: function(event) {
-      if (event.target !== document && !this.$refs.modal.contains(event.target)) {
+      if (event.target !== document && this.$refs.modal && !this.$refs.modal.contains(event.target)) {
         this.$refs.modal.focus();
       }
     }
