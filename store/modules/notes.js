@@ -9,9 +9,8 @@ export default {
   },
   mutations: {
     [POPULATE](state, notes) {
-      state = [];
       notes.forEach(note => {
-        state.push(notes);
+        state.push(note);
       });
     },
     [ADD_NOTE](state, gameMode) {
