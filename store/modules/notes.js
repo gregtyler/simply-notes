@@ -1,4 +1,4 @@
-import db from '../db/notes.js'
+import db from '../db/notes.js';
 import {POPULATE, ADD_NOTE, EDIT_NOTE, DELETE_NOTE} from '../mutation-types.js';
 
 export default {
@@ -9,7 +9,7 @@ export default {
       db.notes.put({type, title, body, createdAt: date, updatedAt: date}).then(key => {
         return db.notes.get(key);
       }).then(note => {
-        context.commit(ADD_NOTE, note)
+        context.commit(ADD_NOTE, note);
       });
     }
   },

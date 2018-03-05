@@ -5,7 +5,7 @@ export default {
     isLoaded: false
   },
   mutations: {
-    [POPULATE](state, notes) {
+    [POPULATE](state) {
       state.isLoaded = true;
     }
   }
