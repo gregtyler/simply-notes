@@ -6,10 +6,23 @@ export default {
   actions: {
     [ADD_NOTE](context, {type, title, body}) {
       const date = new Date();
-      return db.notes.put({type, title, body, createdAt: date, updatedAt: date}).then(key => {
+      return db.notes.add({type, title, body, createdAt: date, updatedAt: date}).then(key => {
         return db.notes.get(key);
       }).then(note => {
         context.commit(ADD_NOTE, note);
+        return note;
+      });
+    },
+    [EDIT_NOTE](context, {id, ...details}) {
+      if (!id) throw new Error('Cannot update note without ID being specified');
+
+      const date = new Date();
+      details.updatedAt = date;
+
+      return db.notes.update(parseInt(id, 10), details).then(key => {
+        return db.notes.get(key);
+      }).then(note => {
+        context.commit(EDIT_NOTE, note);
         return note;
       });
     }
@@ -22,6 +35,12 @@ export default {
     },
     [ADD_NOTE](state, note) {
       state.push(note);
+    },
+    [EDIT_NOTE](state, {id, ...details}) {
+      const note = state.find(note => note.id === id);
+      for (let i in details) {
+        note[i] = details[i];
+      }
     }
   }
 };

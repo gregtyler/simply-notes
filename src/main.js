@@ -10,7 +10,8 @@ const router = new VueRouter({
   routes: [
     {path: '/', name: 'home', component: ListView},
     {path: '/compose', name: 'compose', component: ComposeView},
-    {path: '/:id', name: 'note', component: NoteView}
+    {path: '/:id', name: 'note', component: NoteView},
+    {path: '/:id/edit', name: 'edit', component: ComposeView}
   ]
 });
 

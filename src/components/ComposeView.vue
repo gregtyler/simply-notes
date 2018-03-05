@@ -6,7 +6,7 @@
 
     <div class="form__actions">
       <UiButton :to="{name: 'home'}">Cancel</UiButton>
-      <UiButton flavour="primary" @click="saveNote()">Add note</UiButton>
+      <UiButton flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
     </div>
   </ContentCard>
 </template>
@@ -14,25 +14,45 @@
 <script>
 import UiButton from './UiButton.vue';
 import ContentCard from './ContentCard.vue';
-import {ADD_NOTE} from '../../store/mutation-types.js';
+import {ADD_NOTE, EDIT_NOTE} from '../../store/mutation-types.js';
 
 export default {
   components: {
     ContentCard,
     UiButton
   },
-  data: () => ({
-    title: '',
-    body: ''
-  }),
+  data: function() {
+    if (this.$route.params.id) {
+      const note = this.$store.state.notes.find(note => note.id === parseInt(this.$route.params.id, 10));
+      return {
+        id: this.$route.params.id,
+        isNew: false,
+        title: note.title,
+        body: note.body
+      };
+    } else {
+      return {
+        id: null,
+        isNew: true,
+        title: '',
+        body: ''
+      };
+    }
+  },
   methods: {
     saveNote() {
       const _this = this;
       if (this.title || this.body) {
-        this.$store.dispatch(ADD_NOTE, {type: 'text', title: this.title, body: this.body})
-          .then(note => {
-            _this.$router.push({name: 'note', params: {id: note.id}});
-          });
+        let action = null;
+        if (this.isNew) {
+          action = this.$store.dispatch(ADD_NOTE, {type: 'text', title: this.title, body: this.body});
+        } else {
+          action = this.$store.dispatch(EDIT_NOTE, {id: this.id, title: this.title, body: this.body});
+        }
+
+        action.then(note => {
+          _this.$router.push({name: 'note', params: {id: note.id}});
+        });
       }
     }
   }

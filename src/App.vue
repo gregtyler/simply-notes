@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="app">
     <AppBar />
-    <router-view v-if="$store.state.app.isLoaded" />
+    <router-view v-if="$store.state.app.isLoaded" :key="$route.fullPath" />
     <div v-else>Loading...</div>
   </div>
 </template>
