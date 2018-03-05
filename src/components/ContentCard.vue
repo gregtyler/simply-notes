@@ -14,14 +14,15 @@ export default {
       required: false
     },
     to: {
-      type: String,
-      default: '',
+      type: Object,
+      default: null,
       required: false
     }
   },
   methods: {
     doAction() {
       if (this.to) {
+        console.log(this.to);
         this.$router.push(this.to);
       }
     }

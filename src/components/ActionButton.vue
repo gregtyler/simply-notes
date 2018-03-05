@@ -1,5 +1,5 @@
 <template lang="html">
-  <UiButton flavour="secondary" class="btn--action" @click="doAction" :to="to">+</UiButton>
+  <UiButton flavour="secondary" class="btn--action" :to="to" @click="doAction">+</UiButton>
 </template>
 
 <script>
@@ -11,8 +11,8 @@ export default {
   },
   props: {
     to: {
-      type: String,
-      default: '',
+      type: Object,
+      default: null,
       required: false
     }
   },

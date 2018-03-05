@@ -5,7 +5,7 @@
     <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex"></textarea>
 
     <div class="form__actions">
-      <UiButton to="/">Cancel</UiButton>
+      <UiButton :to="{name: 'home'}">Cancel</UiButton>
       <UiButton flavour="primary" @click="saveNote()">Add note</UiButton>
     </div>
   </ContentCard>
@@ -31,7 +31,7 @@ export default {
       if (this.title || this.body) {
         this.$store.dispatch(ADD_NOTE, {type: 'text', title: this.title, body: this.body})
           .then(note => {
-            _this.$router.push('/' + note.id);
+            _this.$router.push({name: 'note', params: {id: note.id}});
           });
       }
     }

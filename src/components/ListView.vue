@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <ActionButton to="/compose">+</ActionButton>
+    <ActionButton :to="{name: 'compose'}">+</ActionButton>
 
     <CardList v-if="$store.state.notes.length">
-      <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="`/` + note.id">
+      <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="{name: 'note', params: {id: note.id}}">
         <strong v-if="note.title">{{ note.title }}</strong>
         <template v-else>{{ note.body }}</template>
       </ContentCard>

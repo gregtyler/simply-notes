@@ -11,8 +11,8 @@ export default {
       required: false
     },
     to: {
-      type: String,
-      default: '',
+      type: Object,
+      default: null,
       required: false
     }
   },

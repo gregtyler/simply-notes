@@ -8,9 +8,9 @@ import NoteView from './components/NoteView.vue';
 
 const router = new VueRouter({
   routes: [
-    {path: '/', component: ListView},
-    {path: '/compose', component: ComposeView},
-    {path: '/:id', component: NoteView}
+    {path: '/', name: 'home', component: ListView},
+    {path: '/compose', name: 'compose', component: ComposeView},
+    {path: '/:id', name: 'note', component: NoteView}
   ]
 });
 
