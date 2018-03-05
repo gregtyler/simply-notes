@@ -25,6 +25,11 @@ export default {
         context.commit(EDIT_NOTE, note);
         return note;
       });
+    },
+    [DELETE_NOTE](context, id) {
+      return db.notes.delete(parseInt(id, 10)).then(() => {
+        context.commit(DELETE_NOTE, id);
+      });
     }
   },
   mutations: {
@@ -41,6 +46,11 @@ export default {
       for (let i in details) {
         note[i] = details[i];
       }
+    },
+    [DELETE_NOTE](state, id) {
+      const note = state.find(note => note.id === id);
+      const pos = state.indexOf(note);
+      state.splice(pos, 1);
     }
   }
 };

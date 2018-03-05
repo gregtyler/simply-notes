@@ -51,9 +51,15 @@ export default {
 
 .card--fullscreen > .card__body {
   flex: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__actions {
   text-align: right;
+}
+
+.card__actions > * + * {
+  margin-left: .5rem;
 }
 </style>

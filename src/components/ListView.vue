@@ -10,7 +10,7 @@
     </CardList>
     <div v-else class="empty-state">
       <div style="font-size:6rem;">🗋</div>
-      <div>You don't have any notes yet.</dir>
+      <div>You don't have any notes.</dir>
     </div>
   </div>
 </template>

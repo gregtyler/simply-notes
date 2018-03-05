@@ -1,8 +1,8 @@
 <template lang="html">
-  <ContentCard :isFullscreen="true">
+  <ContentCard :is-fullscreen="true">
     <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title">
 
-    <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex"></textarea>
+    <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex" autofocus></textarea>
 
     <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
     <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     saveNote() {
-      const _this = this;
       if (this.title || this.body) {
         let action = null;
         if (this.isNew) {
@@ -49,7 +48,7 @@ export default {
         }
 
         action.then(note => {
-          _this.$router.push({name: 'note', params: {id: note.id}});
+          this.$router.push({name: 'note', params: {id: note.id}});
         });
       }
     }
