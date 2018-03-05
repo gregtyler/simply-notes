@@ -5,7 +5,7 @@
     <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex"></textarea>
 
     <div class="form__actions">
-      <UiButton :to="{name: 'home'}">Cancel</UiButton>
+      <UiButton :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
       <UiButton flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
     </div>
   </ContentCard>
