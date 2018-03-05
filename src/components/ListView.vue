@@ -1,15 +1,17 @@
 <template lang="html">
   <div>
+    <ActionButton to="/compose">+</ActionButton>
+
     <CardList v-if="$store.state.notes.length">
       <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="`/` + note.id">
-        {{ note.title }}
+        <strong v-if="note.title">{{ note.title }}</strong>
+        <template v-else>{{ note.body }}</template>
       </ContentCard>
     </CardList>
     <div v-else class="empty-state">
       <div style="font-size:6rem;">🗋</div>
       <div>You don't have any notes yet.</dir>
     </div>
-    <ActionButton to="/compose">+</ActionButton>
   </div>
 </template>
 

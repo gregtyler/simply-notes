@@ -11,7 +11,7 @@ export default {
 
 <style lang="css">
 .app-bar {
-  position: fixed;
+  position: sticky;
   padding: 1rem;
   top: 0;
   left: 0;

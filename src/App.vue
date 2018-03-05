@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="app">
     <AppBar />
     <router-view v-if="$store.state.app.isLoaded" />
     <div v-else>Loading...</div>
@@ -15,3 +15,11 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+</style>

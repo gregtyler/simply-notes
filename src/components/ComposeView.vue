@@ -1,10 +1,11 @@
 <template lang="html">
-  <ContentCard>
+  <ContentCard class="form">
     <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title">
 
-    <textarea v-model="body" placeholder="New note…" class="form__input"></textarea>
+    <textarea v-model="body" placeholder="New note…" class="form__input form__input--flex"></textarea>
 
     <div class="form__actions">
+      <UiButton to="/">Cancel</UiButton>
       <UiButton @click="saveNote()">Add note</UiButton>
     </div>
   </ContentCard>
@@ -39,6 +40,12 @@ export default {
 </script>
 
 <style lang="css">
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
 .form__input {
   display: block;
   width: 100%;
@@ -50,6 +57,10 @@ export default {
 
 .form__input--title {
   font-weight: bold;
+}
+
+.form__input--flex {
+  flex: auto;
 }
 
 .form__actions {
