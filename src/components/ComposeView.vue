@@ -1,11 +1,11 @@
 <template lang="html">
   <ContentCard>
-    <input type="text" placeholder="Title" class="form__input form__input--title" />
+    <input v-model="title" type="text" placeholder="Title" class="form__input form__input--title">
 
-    <textarea placeholder="New note…" class="form__input"></textarea>
+    <textarea v-model="body" placeholder="New note…" class="form__input"></textarea>
 
-    <div style="text-align:right">
-      <UiButton>Add note</UiButton>
+    <div class="form__actions">
+      <UiButton @click="saveNote()">Add note</UiButton>
     </div>
   </ContentCard>
 </template>
@@ -13,11 +13,27 @@
 <script>
 import UiButton from './UiButton.vue';
 import ContentCard from './ContentCard.vue';
+import {ADD_NOTE} from '../../store/mutation-types.js';
 
 export default {
   components: {
     ContentCard,
     UiButton
+  },
+  data: () => ({
+    title: '',
+    body: ''
+  }),
+  methods: {
+    saveNote() {
+      const _this = this;
+      if (this.title || this.body) {
+        this.$store.dispatch(ADD_NOTE, {type: 'text', title: this.title, body: this.body})
+          .then(note => {
+            _this.$router.push('/' + note.id);
+          });
+      }
+    }
   }
 };
 </script>
@@ -26,7 +42,6 @@ export default {
 .form__input {
   display: block;
   width: 100%;
-  margin-bottom: 1rem;
   padding: .5rem;
   border: 0;
   font-family: inherit;
@@ -35,5 +50,10 @@ export default {
 
 .form__input--title {
   font-weight: bold;
+}
+
+.form__actions {
+  margin-top: 1rem;
+  text-align: right;
 }
 </style>

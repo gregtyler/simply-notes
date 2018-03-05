@@ -38,7 +38,7 @@ export default {
   right: 1rem;
   width: 3rem;
   height: 3rem;
-  padding: 1rem;
+  padding: 0;
   border-radius: 100%;
   box-shadow: 0 .5rem .25rem hsla(0, 0%, 0%, 0.1);
 }

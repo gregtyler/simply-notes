@@ -27,7 +27,7 @@ export default {
 .btn {
   padding: .5rem 1rem;
   border: none;
-  border-radius: .1rem;
+  border-radius: .2rem;
   background-color: var(--color-secondary);
   color: var(--color-secondary-text);
   font-size: 1rem;
