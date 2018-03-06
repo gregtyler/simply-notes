@@ -1,7 +1,9 @@
+/* eslint-env node */
 import json from 'rollup-plugin-json';
 import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
+import uglify from 'rollup-plugin-uglify';
 import swPrecache from 'sw-precache';
 
 /**
@@ -10,7 +12,7 @@ import swPrecache from 'sw-precache';
 function swPrecacheGen() {
   return {
     name: 'sw-precache',
-    transform: function() {
+    onwrite: function() {
       return new Promise((resolve) => {
         const rootDir = 'public';
         swPrecache.write(`${rootDir}/sw.js`, {
@@ -20,6 +22,13 @@ function swPrecacheGen() {
       });
     }
   };
+}
+
+/**
+ * A rollup plugin that doesn't go anything
+ */
+function nullPlugin() {
+  return {name: 'null'};
 }
 
 export default {
@@ -35,15 +44,16 @@ export default {
   },
   plugins: [
     replace({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.BUILD || 'development')
     }),
     json({
       preferConst: true
     }),
     vue({
-      css: true
+      css: 'public/bundle.css'
     }),
     resolve(),
+    process.env.BUILD === 'production' ? uglify() : nullPlugin(),
     swPrecacheGen()
   ]
 };
