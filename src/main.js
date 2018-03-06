@@ -21,7 +21,7 @@ Vue.use(VueRouter);
 
 /** Service worker **/
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(reg => {
+  navigator.serviceWorker.register('./sw.js').then(reg => {
     reg.addEventListener('updatefound', function() {
       toast('A new version of this application is available. Refresh to update.');
     });
