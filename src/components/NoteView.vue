@@ -21,10 +21,7 @@ import EditorList from './EditorList.vue';
 import ModalDialog from './ModalDialog.vue';
 import UiButton from './UiButton.vue';
 import {EDIT_NOTE, DELETE_NOTE} from '../../store/mutation-types.js';
-
-import ToastNotification from './ToastNotification.vue';
-import Vue from 'vue';
-const ToastComponent = Vue.extend(ToastNotification);
+import toast from '../toast.js';
 
 export default {
   components: {
@@ -49,10 +46,7 @@ export default {
       this.$store.dispatch(DELETE_NOTE, this.note.id)
         .then(() => {
           this.$router.push({name: 'home'});
-          new ToastComponent({
-            el: document.createElement('div'),
-            propsData: {body: 'Note successfully deleted'}
-          });
+          toast('Note successfully deleted');
         });
     }
   }
