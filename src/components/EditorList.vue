@@ -1,25 +1,30 @@
 <template lang="html">
   <ul class="list-editor">
-    <li v-for="(item, index) in listItems" :key="index">
-      <label class="list-editor__item">
-        <input :checked="item.checked" type="checkbox" @change="tickItem(index, $event.target.checked)">
+    <li v-for="(item, index) in listItems" :key="index" class="list-editor__item">
+      <UiCheckbox :checked="item.checked" style="flex: auto;" @change="tickItem(index, $event.target.checked)">
 
         <input v-if="editable" :value="item.body" type="text" class="form__input list-editor__input" @change="editItem(index, $event.target.value)">
         <template v-else>{{ item.body }}</template>
+      </UiCheckbox>
 
-        <button v-if="editable" type="button" style="border: none; background: none;" @click="deleteItem(index)">🗑️</button>
-      </label>
+      <button v-if="editable" type="button" style="border: none; background: none;" @click="deleteItem(index)">🗑️</button>
     </li>
     <li v-if="listItems.length === 0"><em>No items yet</em></li>
     <li v-if="editable" class="list-editor__item list-editor__item--divided">
-      <input type="checkbox" disabled>
-      <input type="text" class="form__input" autofocus placeholder="New item…" @keyup.enter="addItem">
+      <UiCheckbox disabled style="flex: auto;">
+        <input type="text" class="form__input list-editor__input" autofocus placeholder="New item…" @keyup.enter="addItem">
+      </UiCheckbox>
     </li>
   </ul>
 </template>
 
 <script>
+import UiCheckbox from './UiCheckbox.vue';
+
 export default {
+  components: {
+    UiCheckbox
+  },
   props: {
     editable: {
       type: Boolean,
@@ -91,7 +96,8 @@ export default {
 }
 
 .list-editor__item--divided {
-   border-top: 1px dashed #CCC;
+  padding-top: 1rem;
+  border-top: 1px dashed #CCC;
 }
 
 .list-editor__input, .form__input.list-editor__input {
