@@ -2,8 +2,27 @@ import json from 'rollup-plugin-json';
 import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
+import swPrecache from 'sw-precache';
 
-export default [{
+/**
+ * A rollup plugin to generate the service worker file
+ */
+function swPrecacheGen() {
+  return {
+    name: 'sw-precache',
+    transform: function() {
+      return new Promise((resolve) => {
+        const rootDir = 'public';
+        swPrecache.write(`${rootDir}/sw.js`, {
+          staticFileGlobs: [rootDir + '/**/*.{js,html}'],
+          stripPrefix: rootDir
+        }, resolve);
+      });
+    }
+  };
+}
+
+export default {
   input: 'src/main.js',
   output: {
     sourcemap: true,
@@ -24,17 +43,7 @@ export default [{
     vue({
       css: true
     }),
-    resolve()
+    resolve(),
+    swPrecacheGen()
   ]
-}, {
-  input: 'src/sw.js',
-  output: {
-    sourcemap: false,
-    file: 'public/sw.js',
-    format: 'iife'
-  },
-  watch: {
-    include: ['src/**/*.js'],
-    clearScreen: false
-  }
-}];
+};
