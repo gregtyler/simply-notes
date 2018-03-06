@@ -1,5 +1,5 @@
 <template lang="html">
-  <ContentCard :is-fullscreen="true">
+  <ContentCard :fullscreen="true">
     <input v-model="title" :autofocus="isNew" type="text" placeholder="Title" class="form__input form__input--title">
 
     <select v-if="isNew" v-model="type" class="form__input">
