@@ -101,10 +101,11 @@ export default {
 
 .notification-area {
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
   min-width: 300px;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .notification-area > .toast {
