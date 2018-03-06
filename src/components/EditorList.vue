@@ -1,5 +1,5 @@
 <template lang="html">
-  <ul class="list-editor">
+  <ul :class="{'list-editor': true, 'list-editor--preview': preview}">
     <li v-for="(item, index) in listItems" :key="index" class="list-editor__item">
       <UiCheckbox :checked="item.checked" style="flex: auto;" @change="tickItem(index, $event.target.checked)">
 
@@ -27,6 +27,11 @@ export default {
   },
   props: {
     editable: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    preview: {
       type: Boolean,
       required: false,
       default: false
@@ -102,5 +107,14 @@ export default {
 
 .list-editor__input, .form__input.list-editor__input {
   padding: 0 0 0 .25rem;
+}
+
+/** Preview variant **/
+.list-editor--preview {
+  font-size: .9rem;
+}
+
+.list-editor--preview .list-editor__item {
+  margin: 0;
 }
 </style>

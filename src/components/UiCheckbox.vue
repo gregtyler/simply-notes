@@ -33,8 +33,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 1.2em;
+  height: 1.2em;
   margin-left: 0;
   border: 1px solid #AAA;
   border-radius: 1px;
