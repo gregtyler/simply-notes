@@ -1,7 +1,7 @@
 <template lang="html">
   <ul :class="{'list-editor': true, 'list-editor--preview': preview}">
     <li v-for="(item, index) in listItems" :key="index" class="list-editor__item">
-      <UiCheckbox :checked="item.checked" style="flex: auto;" @change="tickItem(index, $event.target.checked)">
+      <UiCheckbox :checked="item.checked" style="flex: auto;" @input="tickItem(index, $event)">
 
         <input v-if="editable" :value="item.body" type="text" class="form__input list-editor__input" @change="editItem(index, $event.target.value)">
         <template v-else>{{ item.body }}</template>
