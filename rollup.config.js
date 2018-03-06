@@ -3,7 +3,7 @@ import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 
-export default {
+export default [{
   input: 'src/main.js',
   output: {
     sourcemap: true,
@@ -26,4 +26,15 @@ export default {
     }),
     resolve()
   ]
-};
+}, {
+  input: 'src/sw.js',
+  output: {
+    sourcemap: false,
+    file: 'public/sw.js',
+    format: 'iife'
+  },
+  watch: {
+    include: ['src/**/*.js'],
+    clearScreen: false
+  }
+}];
