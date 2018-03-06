@@ -12,7 +12,7 @@ export default {};
 .card-list {
   margin: .5rem;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: .5rem;
 }
 

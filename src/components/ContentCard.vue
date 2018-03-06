@@ -1,6 +1,6 @@
 <template lang="html">
-  <div :class="{card: true, 'card--fullscreen': isFullscreen}" @click="doAction">
-    <h2 class="card__title" v-if="title">{{ title }}</h2>
+  <div :class="{card: true, 'card--fullscreen': isFullscreen, 'card--preview': preview}" @click="doAction">
+    <h2 v-if="title" class="card__title">{{ title }}</h2>
     <div class="card__body"><slot /></div>
     <div v-if="$slots.button" class="card__actions">
       <slot name="button" />
@@ -11,6 +11,16 @@
 <script>
 export default {
   props: {
+    isFullscreen: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    preview: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     title: {
       type: String,
       default: '',
@@ -19,11 +29,6 @@ export default {
     to: {
       type: Object,
       default: null,
-      required: false
-    },
-    isFullscreen: {
-      type: Boolean,
-      default: false,
       required: false
     }
   },
@@ -67,5 +72,26 @@ export default {
 
 .card__actions > * + * {
   margin-left: .5rem;
+}
+
+/* Preview variant */
+.card--preview {
+  position: relative;
+  max-height: 25vh;
+  overflow: hidden;
+}
+
+.card--preview > .card__body {
+  pointer-events: none;
+}
+
+.card--preview::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 2rem;
+  background: linear-gradient(to top, #FFF, transparent);
 }
 </style>

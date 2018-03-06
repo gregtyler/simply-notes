@@ -3,13 +3,14 @@
     <ActionButton :to="{name: 'compose'}">+</ActionButton>
 
     <CardList v-if="$store.state.notes.length">
-      <ContentCard v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id" :to="{name: 'note', params: {id: note.id}}">
-        <strong v-if="note.title">{{ note.title }}</strong>
-        <div class="note-preview">
+      <div v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id">
+        <ContentCard :preview="true" :to="{name: 'note', params: {id: note.id}}">
+          <strong v-if="note.title">{{ note.title }}</strong>
+
           <p v-if="note.type === 'text'" style="white-space: pre-wrap;">{{ note.body }}</p>
           <EditorList v-if="note.type === 'list'" :value="note.body" :preview="true" />
-        </div>
-      </ContentCard>
+        </ContentCard>
+      </div>
     </CardList>
     <div v-else class="empty-state">
       <div style="font-size:6rem;">🗋</div>
@@ -52,22 +53,5 @@ export default {
   justify-content: center;
   align-items: center;
   color: #999;
-}
-
-.note-preview {
-  position: relative;
-  max-height: 4rem;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.note-preview::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 2rem;
-  background: linear-gradient(to top, #FFF, transparent);
 }
 </style>
