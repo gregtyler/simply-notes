@@ -9,7 +9,7 @@
 
     <textarea v-if="type === 'text'" v-model="body" placeholder="New note…" :autofocus="!isNew" class="form__input form__input--flex"></textarea>
 
-    <EditorList v-if="type === 'list'" v-model="body" style="flex:auto" />
+    <EditorList v-if="type === 'list'" v-model="body" :editable="true" style="flex:auto" />
 
     <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
     <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>

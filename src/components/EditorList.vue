@@ -1,11 +1,14 @@
 <template lang="html">
   <ul style="margin: 0; padding: 0; list-style-type: none;">
-    <li v-for="(item, index) in listItems" :key="index" style="display: flex; align-items: center;">
-      <input :checked="item.checked" type="checkbox" @change="tickItem(index, $event.target.checked)">
-      <input :value="item.body" type="text" class="form__input">
+    <li v-for="(item, index) in listItems" :key="index">
+      <label style="display: flex; align-items: center;">
+        <input :checked="item.checked" type="checkbox" @change="tickItem(index, $event.target.checked)">
+        <input v-if="editable" :value="item.body" type="text" class="form__input">
+        <span v-else>{{ item.body }}</span>
+      </label>
     </li>
     <li v-if="listItems.length === 0"><em>No items yet</em></li>
-    <li style="display: flex; align-items: center;border-top: 1px dashed #CCC">
+    <li v-if="editable" style="display: flex; align-items: center;border-top: 1px dashed #CCC">
       <input type="checkbox" disabled>
       <input type="text" class="form__input" autofocus placeholder="New item…" @keyup.enter="addItem">
     </li>
@@ -15,6 +18,11 @@
 <script>
 export default {
   props: {
+    editable: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     value: {
       type: String,
       required: true
