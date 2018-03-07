@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="app-bar">
-    <router-link :to="{name: 'home'}" tag="h1" class="app-bar__title">Notes</router-link>
+    <router-link :to="{name: 'home'}" tag="h1" class="app-bar__title">Simply Notes</router-link>
   </div>
 </template>
 
