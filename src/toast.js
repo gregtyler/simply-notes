@@ -9,7 +9,6 @@ import ToastNotification from './components/ToastNotification.vue';
  */
 export default function toast(body, props = {}) {
   props.body = body;
-  console.log(props);
   const ToastComponent = Vue.extend(ToastNotification);
   new ToastComponent({
     el: document.createElement('div'),
