@@ -17,7 +17,8 @@ function swPrecacheGen() {
         const rootDir = 'public';
         swPrecache.write(`${rootDir}/sw.js`, {
           staticFileGlobs: [rootDir + '/**/*.{js,html}'],
-          stripPrefix: rootDir
+          stripPrefix: rootDir,
+          replacePrefix: (process.env.SUBDIRECTORY ? `/${process.env.SUBDIRECTORY}` : '')
         }, resolve);
       });
     }
