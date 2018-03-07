@@ -16,7 +16,7 @@ function swPrecacheGen() {
       return new Promise((resolve) => {
         const rootDir = 'public';
         swPrecache.write(`${rootDir}/sw.js`, {
-          staticFileGlobs: [rootDir + '/**/*.{js,html,css,webmanifest}'],
+          staticFileGlobs: [rootDir + '/**/*.{js,html,css,webmanifest,png}'],
           stripPrefix: rootDir,
           replacePrefix: (process.env.SUBDIRECTORY ? `/${process.env.SUBDIRECTORY}` : '')
         }, resolve);
