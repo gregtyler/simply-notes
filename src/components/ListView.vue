@@ -37,9 +37,6 @@ export default {
       return arr.slice().sort((a, b) => {
         return (a[key] - b[key]) * (isDescending ? -1 : 1);
       });
-    },
-    addNote() {
-      this.$store.dispatch('ADD_NOTE', {type: 'text', title: 'Test!', body: 'Body'});
     }
   }
 };

@@ -9,7 +9,7 @@
 
     <textarea v-if="type === 'text'" v-model="body" placeholder="New note…" :autofocus="!isNew" class="form__input form__input--flex"></textarea>
 
-    <EditorList v-if="type === 'list'" v-model="body" :editable="true" style="flex:auto" />
+    <EditorList v-if="type === 'list'" v-model="body" ref="editorList" :editable="true" style="flex:auto" />
 
     <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
     <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
@@ -50,7 +50,14 @@ export default {
   },
   methods: {
     saveNote() {
+      // Tell the list editor to save changes
+      // This adds anything in "Add to list" field to the list
+      if (this.type === 'list') {
+        this.$refs.editorList.$emit('finishEditing');
+      }
+
       if (this.title || this.body) {
+        // Determine save action
         let action = null;
         if (this.isNew) {
           action = this.$store.dispatch(ADD_NOTE, {type: this.type, title: this.title, body: this.body});

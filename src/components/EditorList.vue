@@ -12,7 +12,7 @@
     <li v-if="listItems.length === 0"><em>No items yet</em></li>
     <li v-if="editable" class="list-editor__item list-editor__item--divided">
       <UiCheckbox disabled style="flex: auto;">
-        <input type="text" class="form__input list-editor__input" autofocus placeholder="New item…" @keyup.enter="addItem">
+        <input type="text" class="form__input list-editor__input" autofocus placeholder="New item…" v-model="newItem" @keyup.enter="addItem">
       </UiCheckbox>
     </li>
   </ul>
@@ -42,28 +42,34 @@ export default {
     }
   },
   data: () => ({
+    newItem: '',
     listItems: []
   }),
   mounted() {
+    const _this = this;
     this.listItems = this.value.split('\n')
       .filter(line => !!line)
       .map(line => ({
         checked: line.substr(0, 1) === '1',
         body: line.substr(1)
       }));
+
+    this.$on('finishEditing', function() {
+      _this.addItem();
+    });
   },
   methods: {
     saveChanges() {
       this.$emit('input', this.listItems.map(item => (item.checked ? '1' : '0') + item.body).join('\n'));
     },
-    addItem(event) {
-      if (event.target.value.trim()) {
+    addItem() {
+      if (this.newItem.trim()) {
         this.listItems.push({
           checked: false,
-          body: event.target.value
+          body: this.newItem
         });
 
-        event.target.value = '';
+        this.newItem = '';
 
         this.saveChanges();
       }
