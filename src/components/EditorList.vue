@@ -57,14 +57,16 @@ export default {
       this.$emit('input', this.listItems.map(item => (item.checked ? '1' : '0') + item.body).join('\n'));
     },
     addItem(event) {
-      this.listItems.push({
-        checked: false,
-        body: event.target.value
-      });
+      if (event.target.value.trim()) {
+        this.listItems.push({
+          checked: false,
+          body: event.target.value
+        });
 
-      event.target.value = '';
+        event.target.value = '';
 
-      this.saveChanges();
+        this.saveChanges();
+      }
     },
     editItem(index, newBody) {
       this.listItems[index].body = newBody;
