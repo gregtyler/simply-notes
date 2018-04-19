@@ -8,7 +8,7 @@
       <CustomIcon type="delete" style="font-size: 1.4rem;" />
     </UiButton>
     <UiButton slot="button" style="float:left;" @click="showConfirmArchive = true">
-      <CustomIcon type="archive" style="font-size: 1.4rem;" />
+      <CustomIcon :type="note.isArchived ? 'unarchive' : 'archive'" style="font-size: 1.4rem;" />
     </UiButton>
     <UiButton v-if="shareSupported" slot="button" @click="share">
       <CustomIcon type="share" style="font-size: 1.4rem;" />
@@ -22,9 +22,9 @@
     </ModalDialog>
 
     <ModalDialog v-model="showConfirmArchive" dismiss-label="Cancel">
-      <template slot="title">Confirm Archive</template>
-      Are you sure you want to archive this note?
-      <UiButton slot="button" flavour="primary" @click="archiveNote()">Archive</UiButton>
+      <template slot="title">Confirm {{ note.isArchived ? 'Unarchive' : 'Archive' }}</template>
+      Are you sure you want to {{ note.isArchived ? 'unarchive' : 'archive' }} this note?
+      <UiButton slot="button" flavour="primary" @click="archiveNote()">{{ note.isArchived ? 'Unarchive' : 'Archive' }}</UiButton>
     </ModalDialog>
   </ContentCard>
 </template>
@@ -35,7 +35,7 @@ import CustomIcon from './CustomIcon.vue';
 import EditorList from './EditorList.vue';
 import ModalDialog from './ModalDialog.vue';
 import UiButton from './UiButton.vue';
-import {EDIT_NOTE, ARCHIVE_NOTE, DELETE_NOTE} from '../../store/mutation-types.js';
+import {EDIT_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE, DELETE_NOTE} from '../../store/mutation-types.js';
 import toast from '../toast.js';
 
 export default {
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     archiveNote() {
-      this.$store.dispatch(ARCHIVE_NOTE, this.note.id)
+      this.$store.dispatch(this.note.isArchived ? UNARCHIVE_NOTE : ARCHIVE_NOTE, this.note.id)
         .then(() => {
           this.$router.push({name: 'home'});
           toast('Note archived');
