@@ -1,12 +1,16 @@
 <template lang="html">
-  <UiButton flavour="secondary" class="btn--action" :to="to" @click="doAction">+</UiButton>
+  <UiButton :to="to" flavour="secondary" class="btn--action" @click="doAction">
+    <CustomIcon :type="icon" />
+  </UiButton>
 </template>
 
 <script>
+import CustomIcon from './CustomIcon.vue';
 import UiButton from './UiButton.vue';
 
 export default {
   components: {
+    CustomIcon,
     UiButton
   },
   props: {
@@ -14,6 +18,10 @@ export default {
       type: Object,
       default: null,
       required: false
+    },
+    icon: {
+      type: String,
+      required: true
     }
   },
   methods: {

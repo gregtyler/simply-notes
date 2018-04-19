@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <ActionButton :to="{name: 'compose'}">+</ActionButton>
+    <ActionButton :to="{name: 'compose'}" icon="add"></ActionButton>
 
     <CardList v-if="notes.length">
       <div v-for="note in sortBy(notes, 'updatedAt', true)" :key="note.id">
