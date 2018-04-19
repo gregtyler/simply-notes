@@ -103,7 +103,7 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  margin: 1rem;
   min-width: 300px;
   max-width: 500px;
 }
