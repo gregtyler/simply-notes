@@ -2,7 +2,7 @@
   <div class="app">
     <AppBar />
     <router-view v-if="$store.state.app.isLoaded" :key="$route.fullPath" />
-    <div v-else>Loading...</div>
+    <div v-else class="app__loading">Loading...</div>
   </div>
 </template>
 
@@ -21,5 +21,11 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.app__loading {
+  margin-top: 2rem;
+  align-self: center;
+  text-align: center;
 }
 </style>
