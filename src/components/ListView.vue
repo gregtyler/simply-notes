@@ -2,6 +2,10 @@
   <div>
     <ActionButton :to="{name: 'compose'}" icon="add"></ActionButton>
 
+    <div v-if="archive" class="context-warning">
+      Archive
+    </div>
+
     <CardList v-if="notes.length">
       <div v-for="note in sortBy(notes, 'updatedAt', true)" :key="note.id">
         <ContentCard :preview="true" :to="{name: 'note', params: {id: note.id}}">
@@ -65,6 +69,15 @@ export default {
   height: 90vh;
   justify-content: center;
   align-items: center;
+  color: #999;
+}
+
+.context-warning {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding-top: .5rem;
   color: #999;
 }
 </style>
