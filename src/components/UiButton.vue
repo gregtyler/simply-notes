@@ -40,6 +40,7 @@ export default {
 
 .btn--default {
   background-color: #FFF;
+  color: var(--color-text);
 }
 
 .btn--primary {
