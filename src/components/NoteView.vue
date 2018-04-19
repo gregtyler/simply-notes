@@ -4,8 +4,12 @@
 
     <EditorList v-if="note.type === 'list'" :value="note.body" @input="saveNote" />
 
-    <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">🗑️ Delete</UiButton>
-    <UiButton v-if="shareSupported" slot="button" @click="share">✉️ Share</UiButton>
+    <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">
+      <CustomIcon type="delete" style="font-size: 1.4rem;" />
+    </UiButton>
+    <UiButton v-if="shareSupported" slot="button" @click="share">
+      <CustomIcon type="share" style="font-size: 1.4rem;" />
+    </UiButton>
     <UiButton slot="button" :to="{name: 'edit', id: note.id}" flavour="primary">Edit</UiButton>
 
     <ModalDialog v-model="showConfirmDelete" dismiss-label="Cancel">
@@ -18,6 +22,7 @@
 
 <script>
 import ContentCard from './ContentCard.vue';
+import CustomIcon from './CustomIcon.vue';
 import EditorList from './EditorList.vue';
 import ModalDialog from './ModalDialog.vue';
 import UiButton from './UiButton.vue';
@@ -27,6 +32,7 @@ import toast from '../toast.js';
 export default {
   components: {
     ContentCard,
+    CustomIcon,
     EditorList,
     ModalDialog,
     UiButton
