@@ -1,5 +1,5 @@
 import db from '../db/notes.js';
-import {POPULATE, ADD_NOTE, EDIT_NOTE, DELETE_NOTE} from '../mutation-types.js';
+import {POPULATE, ADD_NOTE, EDIT_NOTE, DELETE_NOTE, ARCHIVE_NOTE} from '../mutation-types.js';
 
 export default {
   state: [],
@@ -26,6 +26,11 @@ export default {
         return note;
       });
     },
+    [ARCHIVE_NOTE](context, id) {
+      return db.notes.update(id, {isArchived: true}).then(() => {
+        context.commit(ARCHIVE_NOTE, id);
+      });
+    },
     [DELETE_NOTE](context, id) {
       return db.notes.delete(id).then(() => {
         context.commit(DELETE_NOTE, id);
@@ -46,6 +51,10 @@ export default {
       for (let i in details) {
         note[i] = details[i];
       }
+    },
+    [ARCHIVE_NOTE](state, id) {
+      const note = state.find(note => note.id === id);
+      note.isArchived = true;
     },
     [DELETE_NOTE](state, id) {
       const note = state.find(note => note.id === id);
