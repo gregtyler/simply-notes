@@ -13,7 +13,7 @@
       </div>
     </CardList>
     <div v-else class="empty-state">
-      <div style="font-size:6rem;">🗋</div>
+      <UiIcon type="document" style="height:6rem;" />
       <div>You don't have any notes{{ archive ? ' in your archive' : '' }}.</div>
     </div>
   </div>
@@ -24,13 +24,15 @@ import ActionButton from './ActionButton.vue';
 import CardList from './CardList.vue';
 import ContentCard from './ContentCard.vue';
 import EditorList from './EditorList.vue';
+import UiIcon from './UiIcon.vue';
 
 export default {
   components: {
     ActionButton,
     CardList,
     ContentCard,
-    EditorList
+    EditorList,
+    UiIcon
   },
   props: {
     archive: {
