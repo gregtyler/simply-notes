@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="app">
-    <AppBar />
+    <AppBar @toggleMenu="showMenu = !showMenu" />
+    <AppMenu :visible="showMenu" @close="showMenu = false" />
     <router-view v-if="$store.state.app.isLoaded" :key="$route.fullPath" />
     <div v-else class="app__loading">Loading...</div>
   </div>
@@ -8,11 +9,16 @@
 
 <script>
 import AppBar from './components/AppBar.vue';
+import AppMenu from './components/AppMenu.vue';
 
 export default {
   components: {
-    AppBar
-  }
+    AppBar,
+    AppMenu
+  },
+  data: () => ({
+    showMenu: false
+  })
 };
 </script>
 

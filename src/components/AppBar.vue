@@ -1,11 +1,10 @@
 <template lang="html">
   <div class="app-bar">
-    <router-link :to="{name: 'home'}" tag="h1" class="app-bar__title">Simply Notes</router-link>
-    <div>
-      <router-link v-if="showArchive" :to="{name: 'archive'}" class="app-bar__action">
-        <UiIcon type="archive" style="height: 1.5rem;" />
-      </router-link>
+    <div @click="$emit('toggleMenu')" style="display: flex;">
+      <UiIcon type="menu" style="height: 1.5rem;" />
     </div>
+    &nbsp;
+    <h1 class="app-bar__title">Simply Notes</h1>
   </div>
 </template>
 
@@ -43,10 +42,5 @@ export default {
   margin: 0;
   font-size: 1.2rem;
   font-weight: normal;
-}
-
-.app-bar__action {
-  color: inherit;
-  text-decoration: none;
 }
 </style>
