@@ -7,9 +7,9 @@
       <option value="list">List</option>
     </select>
 
-    <textarea v-if="type === 'text'" v-model="body" placeholder="New note…" :autofocus="!isNew" class="form__input form__input--flex"></textarea>
+    <textarea v-if="type === 'text'" v-model="body" ref="editorText" placeholder="New note…" :autofocus="!isNew" class="form__input form__input--flex" @input="resizeTextarea" style="overflow-y:hidden"></textarea>
 
-    <EditorList v-if="type === 'list'" v-model="body" ref="editorList" :editable="true" style="flex:auto" />
+    <EditorList v-if="type === 'list'" ref="editorList" v-model="body" :editable="true" style="flex:auto" />
 
     <UiButton slot="button" :to="isNew ? {name: 'home'} : {name: 'note', id}">Cancel</UiButton>
     <UiButton slot="button" flavour="primary" @click="saveNote()">{{ isNew ? 'Add note' : 'Save' }}</UiButton>
@@ -48,7 +48,15 @@ export default {
       };
     }
   },
+  mounted() {
+    this.resizeTextarea();
+  },
   methods: {
+    resizeTextarea() {
+      const $textarea = this.$refs.editorText;
+      $textarea.style.height = 'auto';
+      $textarea.style.height = ($textarea.scrollHeight) + 'px';
+    },
     saveNote() {
       // Tell the list editor to save changes
       // This adds anything in "Add to list" field to the list
