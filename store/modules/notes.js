@@ -6,7 +6,7 @@ export default {
   actions: {
     [ADD_NOTE](context, {type, title, body}) {
       const date = new Date();
-      return db.notes.add({type, title, body, createdAt: date, updatedAt: date}).then(key => {
+      return db.notes.add({type, title, body, createdAt: date, updatedAt: date, isArchived: false}).then(key => {
         return db.notes.get(key);
       }).then(note => {
         context.commit(ADD_NOTE, note);
