@@ -4,8 +4,15 @@
 
     <EditorList v-if="note.type === 'list'" :value="note.body" @input="saveNote" />
 
-    <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">🗑️ Delete</UiButton>
-    <UiButton v-if="shareSupported" slot="button" @click="share">✉️ Share</UiButton>
+    <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">
+      <UiIcon type="delete" style="font-size: 1.4rem;" />
+    </UiButton>
+    <UiButton slot="button" style="float:left;" @click="showConfirmArchive = true">
+      <UiIcon :type="note.isArchived ? 'unarchive' : 'archive'" style="font-size: 1.4rem;" />
+    </UiButton>
+    <UiButton v-if="shareSupported" slot="button" @click="share">
+      <UiIcon type="share" style="font-size: 1.4rem;" />
+    </UiButton>
     <UiButton slot="button" :to="{name: 'edit', id: note.id}" flavour="primary">Edit</UiButton>
 
     <ModalDialog v-model="showConfirmDelete" dismiss-label="Cancel">
@@ -13,25 +20,34 @@
       Are you sure you want to delete this note?
       <UiButton slot="button" flavour="primary" @click="deleteNote()">Delete</UiButton>
     </ModalDialog>
+
+    <ModalDialog v-model="showConfirmArchive" dismiss-label="Cancel">
+      <template slot="title">Confirm {{ note.isArchived ? 'Unarchive' : 'Archive' }}</template>
+      Are you sure you want to {{ note.isArchived ? 'unarchive' : 'archive' }} this note?
+      <UiButton slot="button" flavour="primary" @click="archiveNote()">{{ note.isArchived ? 'Unarchive' : 'Archive' }}</UiButton>
+    </ModalDialog>
   </ContentCard>
 </template>
 
 <script>
 import ContentCard from './ContentCard.vue';
+import UiIcon from './UiIcon.vue';
 import EditorList from './EditorList.vue';
 import ModalDialog from './ModalDialog.vue';
 import UiButton from './UiButton.vue';
-import {EDIT_NOTE, DELETE_NOTE} from '../../store/mutation-types.js';
+import {EDIT_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE, DELETE_NOTE} from '../../store/mutation-types.js';
 import toast from '../toast.js';
 
 export default {
   components: {
     ContentCard,
+    UiIcon,
     EditorList,
     ModalDialog,
     UiButton
   },
   data: () => ({
+    showConfirmArchive: false,
     showConfirmDelete: false
   }),
   computed: {
@@ -43,6 +59,13 @@ export default {
     }
   },
   methods: {
+    archiveNote() {
+      this.$store.dispatch(this.note.isArchived ? UNARCHIVE_NOTE : ARCHIVE_NOTE, this.note.id)
+        .then(() => {
+          this.$router.push({name: 'home'});
+          toast('Note archived');
+        });
+    },
     share() {
       navigator.share({
         title: this.note.title,
@@ -56,7 +79,7 @@ export default {
       this.$store.dispatch(DELETE_NOTE, this.note.id)
         .then(() => {
           this.$router.push({name: 'home'});
-          toast('Note successfully deleted');
+          toast('Note deleted');
         });
     }
   }

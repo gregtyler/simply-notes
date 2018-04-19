@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <ActionButton :to="{name: 'compose'}">+</ActionButton>
+    <ActionButton :to="{name: 'compose'}" icon="add"></ActionButton>
 
-    <CardList v-if="$store.state.notes.length">
-      <div v-for="note in sortBy($store.state.notes, 'updatedAt', true)" :key="note.id">
+    <CardList v-if="notes.length">
+      <div v-for="note in sortBy(notes, 'updatedAt', true)" :key="note.id">
         <ContentCard :preview="true" :to="{name: 'note', params: {id: note.id}}">
           <strong v-if="note.title">{{ note.title }}</strong>
 
@@ -14,7 +14,7 @@
     </CardList>
     <div v-else class="empty-state">
       <div style="font-size:6rem;">🗋</div>
-      <div>You don't have any notes.</div>
+      <div>You don't have any notes{{ archive ? ' in your archive' : '' }}.</div>
     </div>
   </div>
 </template>
@@ -31,6 +31,20 @@ export default {
     CardList,
     ContentCard,
     EditorList
+  },
+  props: {
+    archive: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    notes() {
+      const _this = this;
+      return this.$store.state.notes.filter(note => {
+        return note.isArchived === _this.archive;
+      });
+    }
   },
   methods: {
     sortBy(arr, key, isDescending) {

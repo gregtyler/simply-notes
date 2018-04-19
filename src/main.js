@@ -10,7 +10,8 @@ import toast from './toast.js';
 /** Router **/
 const router = new VueRouter({
   routes: [
-    {path: '/', name: 'home', component: ListView},
+    {path: '/', name: 'home', component: ListView, props: {archive: false}},
+    {path: '/archive', name: 'archive', component: ListView, props: {archive: true}},
     {path: '/compose', name: 'compose', component: EditView},
     {path: '/:id', name: 'note', component: NoteView},
     {path: '/:id/edit', name: 'edit', component: EditView}
