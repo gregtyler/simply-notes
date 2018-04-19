@@ -5,7 +5,7 @@
     <EditorList v-if="note.type === 'list'" :value="note.body" @input="saveNote" />
 
     <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">🗑️ Delete</UiButton>
-    <UiButton slot="button" @click="share">✉️ Share</UiButton>
+    <UiButton v-if="shareSupported" slot="button" @click="share">✉️ Share</UiButton>
     <UiButton slot="button" :to="{name: 'edit', id: note.id}" flavour="primary">Edit</UiButton>
 
     <ModalDialog v-model="showConfirmDelete" dismiss-label="Cancel">
@@ -37,6 +37,9 @@ export default {
   computed: {
     note() {
       return this.$store.state.notes.find(a => a.id === parseInt(this.$route.params.id, 10));
+    },
+    shareSupported() {
+      return 'share' in navigator;
     }
   },
   methods: {
