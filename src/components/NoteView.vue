@@ -4,16 +4,19 @@
 
     <EditorList v-if="note.type === 'list'" :value="note.body" @input="saveNote" />
 
-    <UiButton slot="button" style="float:left;" @click="showConfirmDelete = true">
-      <UiIcon type="delete" style="font-size: 1.4rem;" />
-    </UiButton>
-    <UiButton slot="button" style="float:left;" @click="showConfirmArchive = true">
-      <UiIcon :type="note.isArchived ? 'unarchive' : 'archive'" style="font-size: 1.4rem;" />
-    </UiButton>
-    <UiButton v-if="shareSupported" slot="button" @click="share">
-      <UiIcon type="share" style="font-size: 1.4rem;" />
-    </UiButton>
-    <UiButton slot="button" :to="{name: 'edit', id: note.id}" flavour="primary">Edit</UiButton>
+    <ButtonGroup slot="button" style="float:left;">
+      <UiButton @click="showConfirmDelete = true">
+        <UiIcon type="delete" style="font-size: 1.4rem;" />
+      </UiButton>
+      <UiButton @click="showConfirmArchive = true">
+        <UiIcon :type="note.isArchived ? 'unarchive' : 'archive'" style="font-size: 1.4rem;" />
+      </UiButton>
+      <UiButton v-if="shareSupported" @click="share">
+        <UiIcon type="share" style="font-size: 1.4rem;" />
+      </UiButton>
+    </ButtonGroup>
+
+    <ActionButton slot="button" :to="{name: 'edit', id: note.id}" icon="edit" />
 
     <ModalDialog v-model="showConfirmDelete" dismiss-label="Cancel">
       <template slot="title">Confirm Delete</template>
@@ -30,6 +33,8 @@
 </template>
 
 <script>
+import ActionButton from './ActionButton.vue';
+import ButtonGroup from './ButtonGroup.vue';
 import ContentCard from './ContentCard.vue';
 import UiIcon from './UiIcon.vue';
 import EditorList from './EditorList.vue';
@@ -40,6 +45,8 @@ import toast from '../toast.js';
 
 export default {
   components: {
+    ActionButton,
+    ButtonGroup,
     ContentCard,
     UiIcon,
     EditorList,
