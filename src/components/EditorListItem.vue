@@ -1,5 +1,5 @@
 <template lang="html">
-  <li class="list-editor__item">
+  <li :class="{'list-editor__item': true, 'list-editor__item--ticked': ticked}">
     <UiCheckbox :checked="item.checked" style="flex: auto;" @input="tickItem($event)">
 
       <input v-if="editable" :value="item.body" type="text" class="form__input list-editor__input" @change="editItem($event.target.value)">
@@ -26,6 +26,10 @@ export default {
       type: Boolean,
       default: false
     },
+    ticked: {
+      type: Boolean,
+      default: false
+    },
     item: {
       type: Object,
       required: true
@@ -44,16 +48,3 @@ export default {
   }
 };
 </script>
-
-<style lang="css">
-.list-editor__item {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-}
-
-.list-editor__item--divided {
-  padding-top: 1rem;
-  border-top: 1px dashed #CCC;
-}
-</style>
