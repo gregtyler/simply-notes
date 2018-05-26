@@ -7,7 +7,7 @@
       <option value="list">List</option>
     </select>
 
-    <textarea v-if="type === 'text'" v-model="body" ref="editorText" placeholder="New note…" :autofocus="!isNew" class="form__input form__input--flex" @input="resizeTextarea" style="overflow-y:hidden"></textarea>
+    <textarea v-if="type === 'text'" v-model="body" :autofocus="!isNew" ref="editorText" placeholder="New note…" class="form__input form__input--flex" @input="resizeTextarea" style="overflow-y:hidden"></textarea>
 
     <EditorList v-if="type === 'list'" ref="editorList" v-model="body" :editable="true" style="flex:auto" />
 
@@ -54,8 +54,10 @@ export default {
   methods: {
     resizeTextarea() {
       const $textarea = this.$refs.editorText;
-      $textarea.style.height = 'auto';
-      $textarea.style.height = ($textarea.scrollHeight) + 'px';
+      if ($textarea) {
+        $textarea.style.height = 'auto';
+        $textarea.style.height = ($textarea.scrollHeight) + 'px';
+      }
     },
     saveNote() {
       // Tell the list editor to save changes
