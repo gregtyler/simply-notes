@@ -86,6 +86,7 @@ export default {
   font-weight: 500;
   text-decoration: none;
   align-items: center;
+  color: inherit;
 }
 
 .app-menu__action--active {
