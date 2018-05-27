@@ -1,6 +1,6 @@
 <template lang="html">
   <ContentCard :title="note.title" :fullscreen="true">
-    <p v-if="note.type === 'text'" style="white-space: pre-wrap">{{ note.body }}</p>
+    <p v-if="note.type === 'text'" class="note__body">{{ note.body }}</p>
 
     <EditorList v-if="note.type === 'list'" :value="note.body" @input="saveNote" />
 
@@ -92,3 +92,13 @@ export default {
   }
 };
 </script>
+
+<style media="screen">
+.note__body {
+  white-space: pre-wrap;
+  user-select: text;
+  -ms-user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+}
+</style>

@@ -112,7 +112,6 @@ export default {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  user-select: none;
 }
 
 .list-editor__header {

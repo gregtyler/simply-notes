@@ -27,6 +27,10 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 .app__loading {
