@@ -11,7 +11,7 @@
         <ContentCard :preview="true" :to="{name: 'note', params: {id: note.id}}">
           <strong v-if="note.title">{{ note.title }}</strong>
 
-          <p v-if="note.type === 'text'" style="white-space: pre-wrap;">{{ note.body }}</p>
+          <p v-if="note.type === 'text'" class="preview-text">{{ note.body }}</p>
           <EditorList v-if="note.type === 'list'" :value="note.body" :preview="true" />
         </ContentCard>
       </div>
@@ -79,5 +79,11 @@ export default {
   font-weight: bold;
   padding-top: .5rem;
   color: #999;
+}
+
+.preview-text {
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-break: break-word;
 }
 </style>

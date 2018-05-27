@@ -93,7 +93,7 @@ export default {
 };
 </script>
 
-<style media="screen">
+<style lang="css">
 .note__body {
   white-space: pre-wrap;
   user-select: text;
