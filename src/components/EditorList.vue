@@ -2,7 +2,7 @@
   <ul :class="{'list-editor': true, 'list-editor--preview': preview}">
     <EditorListItem v-for="item in untickedItems" :key="item.id" :item="item" :editable="editable" @edit="editItem(item.id, $event)" @delete="deleteItem(item.id)" @tick="tickItem(item.id, $event)" />
 
-    <template v-if="tickedItems">
+    <template v-if="tickedItems.length">
       <li class="list-editor__header">Completed</li>
       <EditorListItem v-for="item in tickedItems" :key="item.id" :item="item" :editable="editable" :ticked="true" @edit="editItem(item.id, $event)" @delete="deleteItem(item.id)" @tick="tickItem(item.id, $event)" />
     </template>
