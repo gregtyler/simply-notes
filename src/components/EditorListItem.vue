@@ -2,7 +2,7 @@
   <li :class="{'list-editor__item': true, 'list-editor__item--ticked': ticked}">
     <UiCheckbox :checked="item.checked" style="flex: auto;" @input="tickItem($event)">
 
-      <input v-if="editable" :value="item.body" type="text" class="form__input list-editor__input" @change="editItem($event.target.value)">
+      <input v-if="editable" :value="item.body" type="text" autocapitalize="sentences" class="form__input list-editor__input" @change="editItem($event.target.value)">
       <template v-else>{{ item.body }}</template>
     </UiCheckbox>
 

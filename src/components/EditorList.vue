@@ -10,7 +10,7 @@
     <li v-if="listItems.length === 0"><em>No items yet</em></li>
     <li v-if="editable" class="list-editor__item list-editor__item--divided">
       <UiCheckbox disabled style="flex: auto;">
-        <input v-model="newItem" type="text" class="form__input list-editor__input" autofocus placeholder="New item…" @keyup.enter="addItem">
+        <input v-model="newItem" type="text" autocapitalize="sentences" class="form__input list-editor__input" autofocus placeholder="New item…" @keyup.enter="addItem">
       </UiCheckbox>
     </li>
   </ul>

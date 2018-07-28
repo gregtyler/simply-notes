@@ -1,13 +1,13 @@
 <template lang="html">
   <ContentCard :fullscreen="true">
-    <input v-model="title" :autofocus="isNew" type="text" placeholder="Title" class="form__input form__input--title">
+    <input v-model="title" :autofocus="isNew" type="text" autocapitalize="sentences" placeholder="Title" class="form__input form__input--title">
 
     <select v-if="isNew" v-model="type" class="form__input">
       <option value="text">Text</option>
       <option value="list">List</option>
     </select>
 
-    <textarea v-if="type === 'text'" v-model="body" :autofocus="!isNew" ref="editorText" placeholder="New note…" class="form__input form__input--flex" @input="resizeTextarea" style="overflow-y:hidden"></textarea>
+    <textarea v-if="type === 'text'" v-model="body" :autofocus="!isNew" ref="editorText" autocapitalize="sentences" placeholder="New note…" class="form__input form__input--flex" @input="resizeTextarea" style="overflow-y:hidden"></textarea>
 
     <EditorList v-if="type === 'list'" ref="editorList" v-model="body" :editable="true" style="flex:auto" />
 
