@@ -14,9 +14,9 @@ When making developments to the application, run `npm run dev` in the root
 folder. This will build the application into the `public` folder, and
 automatically rebuild it every time you change a source file.
 
-You can then access the application either by opening the `public/index.html`
-file in your browser. To access it through an HTTP server, simply run
-`npx http-server` in the `public` folder and access the URL shown on screen.
+You can then access the application by opening the `public/index.html` file in
+your browser. To access it through an HTTP server, simply run `npx http-server`
+in the `public` folder and access the URL shown on screen.
 
 ## Deployment
 When you're ready to deploy the application, you can build a production-ready
