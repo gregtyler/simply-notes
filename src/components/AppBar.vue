@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="app-bar">
     <div @click="$emit('toggleMenu')" style="display: flex;">
       <UiIcon type="menu" style="height: 1.5rem;" />

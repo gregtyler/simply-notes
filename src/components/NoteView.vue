@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <ContentCard :title="note.title" :fullscreen="true">
     <p v-if="note.type === 'text'" class="note__body">{{ note.body }}</p>
 

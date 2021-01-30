@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div :class="{card: true, 'card--fullscreen': fullscreen, 'card--preview': preview}" @click="doAction">
     <h2 v-if="title" class="card__title">{{ title }}</h2>
     <div class="card__body"><slot /></div>

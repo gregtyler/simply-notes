@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div>
     <ActionButton :to="{name: 'compose'}" icon="add"></ActionButton>
 

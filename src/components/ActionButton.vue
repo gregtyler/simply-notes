@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <UiButton :to="to" flavour="secondary" class="btn--action" @click="doAction">
     <UiIcon :type="icon" />
   </UiButton>

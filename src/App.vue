@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="app">
     <AppBar @toggleMenu="showMenu = !showMenu" />
     <AppMenu :visible="showMenu" @close="showMenu = false" />

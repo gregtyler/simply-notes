@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <button :class="`btn btn--${flavour}`" type="button" @click="doAction"><slot /></button>
 </template>
 

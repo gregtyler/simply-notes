@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <ul :class="{'list-editor': true, 'list-editor--preview': preview}">
     <EditorListItem v-for="item in untickedItems" :key="item.id" :item="item" :editable="editable" @edit="editItem(item.id, $event)" @delete="deleteItem(item.id)" @tick="tickItem(item.id, $event)" />
 

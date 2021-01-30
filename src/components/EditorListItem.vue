@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <li :class="{'list-editor__item': true, 'list-editor__item--ticked': ticked}">
     <UiCheckbox :checked="item.checked" style="flex: auto;" @input="tickItem($event)">
 

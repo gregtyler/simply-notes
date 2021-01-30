@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <ContentCard :fullscreen="true">
     <input v-model="title" :autofocus="isNew" type="text" autocapitalize="sentences" placeholder="Title" class="form__input form__input--title">
 

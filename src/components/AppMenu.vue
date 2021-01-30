@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="app-menu__container">
     <div :class="{'app-menu__backdrop': true, 'app-menu__backdrop--visible': visible}" @click.self="$emit('close')" />
 
