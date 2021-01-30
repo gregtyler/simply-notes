@@ -35,10 +35,10 @@ export default {
   justify-content: center;
   width: 1.2em;
   height: 1.2em;
-  margin-left: 0;
-  border: 1px solid #AAA;
+  margin-left: calc(var(--spacing) * 0.25);
+  border: 1px solid var(--color-highlight);
   border-radius: 1px;
-  background: #FFF;
+  background: hsla(0, 0%, 100%, 0.8);
   font-family: inherit;
   font-size: inherit;
   outline: 0;
@@ -57,7 +57,7 @@ export default {
 
 .ui-checkbox__input::before {
   content: '';
-  color: var(--color-primary);
+  color: var(--color-highlight);
   transition: color .1s linear, background-color .1s linear;
   speak: none;
 }

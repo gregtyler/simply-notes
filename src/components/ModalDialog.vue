@@ -116,7 +116,7 @@ export default {
   z-index: -1;
   position: fixed;
   will-change: opacity;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: hsla(0, 0%, 0%, 0.5);
   -webkit-tap-highlight-color: transparent
 }
 
@@ -129,7 +129,7 @@ export default {
   max-height: 90vh;
   overflow-y: auto;
   flex-direction: column;
-  background-color: white;
+  background-color: hsla(0, 0%, 25%, 0.5);
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
 

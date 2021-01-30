@@ -1,6 +1,7 @@
 <template>
   <UiButton :to="to" flavour="secondary" class="btn--action" @click="doAction">
     <UiIcon :type="icon" />
+    <slot />
   </UiButton>
 </template>
 
@@ -42,12 +43,13 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
-  border-radius: 100%;
-  box-shadow: 0 0 2px hsla(0, 0%, 0%, .12), 0 .5rem .25rem hsla(0, 0%, 0%, 0.1);
+  bottom: var(--spacing);
+  right: var(--spacing);
+  padding: var(--spacing);
+  border-radius: 2px;
+}
+
+.btn.btn--action .icon {
+  margin-right: calc(var(--spacing) * 0.5);
 }
 </style>

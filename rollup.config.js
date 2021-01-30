@@ -42,7 +42,6 @@ function nullPlugin() {
 export default {
   input: 'src/main.js',
   output: {
-    sourcemap: true,
     file: 'public/bundle.js',
     format: 'iife'
   },

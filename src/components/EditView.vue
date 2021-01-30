@@ -88,10 +88,13 @@ export default {
 .form__input {
   display: block;
   width: 100%;
-  padding: .5rem;
+  margin: calc(var(--spacing) * 0.5) 0;
+  padding: calc(var(--spacing) * 0.5);
   border: 0;
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
+  background-color: hsla(0, 0%, 75%, 0.2);
 }
 
 .form__input--title {

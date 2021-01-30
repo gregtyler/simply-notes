@@ -116,9 +116,10 @@ export default {
 
 .list-editor__header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
+  grid-gap: var(--spacing);
   align-items: center;
-  color: #999;
+  color: var(--color-highlight);
   font-size: 0.8rem;
   text-transform: uppercase;
   text-align: center;
@@ -126,7 +127,7 @@ export default {
 
 .list-editor__header::before, .list-editor__header::after {
   content: ' ';
-  border-top: 1px dashed #CCC;
+  border-top: 1px dashed currentColor;
 }
 
 .list-editor__item {
@@ -137,17 +138,19 @@ export default {
 
 .list-editor__item--divided {
   padding-top: 1rem;
-  border-top: 1px dashed #CCC;
+  border-top: 1px dashed var(--color-highlight);
 }
 
 .list-editor__item--ticked {
-  color: #999;
+  color: hsla(0, 0%, 75%, 0.5);
   text-decoration: line-through;
 }
 
 .list-editor__input, .form__input.list-editor__input {
+  margin: 0;
   padding: 0 0 0 .25rem;
   color: inherit;
+  background-color: transparent;
 }
 
 /** Preview variant **/

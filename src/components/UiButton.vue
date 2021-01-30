@@ -30,7 +30,7 @@ export default {
 
 <style lang="css">
 .btn {
-  padding: .5rem 1.4rem;
+  padding: .7rem 1.4rem;
   border: none;
   border-radius: .2rem;
   font-size: 1rem;
@@ -39,7 +39,7 @@ export default {
 }
 
 .btn--default {
-  background-color: #FFF;
+  background-color: hsla(0, 0%, 25%, 0.5);
   color: var(--color-text);
 }
 

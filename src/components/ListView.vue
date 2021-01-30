@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ActionButton :to="{name: 'compose'}" icon="add"></ActionButton>
+    <ActionButton :to="{name: 'compose'}" icon="add">Add note</ActionButton>
 
     <div v-if="archive" class="context-warning">
       Archive
@@ -10,9 +10,8 @@
       <div v-for="note in sortBy(notes, 'updatedAt', true)" :key="note.id">
         <ContentCard :preview="true" :to="{name: 'note', params: {id: note.id}}">
           <strong v-if="note.title">{{ note.title }}</strong>
-
-          <p v-if="note.type === 'text'" class="preview-text">{{ note.body }}</p>
-          <EditorList v-if="note.type === 'list'" :value="note.body" :preview="true" />
+          <strong v-else-if="note.type === 'list'">List with {{ note.body.split('\n').length }} items</strong>
+          <span v-else>{{ note.body.split('\n')[0] }}</span>
         </ContentCard>
       </div>
     </CardList>

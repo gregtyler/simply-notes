@@ -4,7 +4,11 @@
       <UiIcon type="menu" style="height: 1.5rem;" />
     </div>
     &nbsp;
-    <h1 class="app-bar__title">Simply Notes</h1>
+    <h1 class="app-bar__title">
+      <router-link :to="{name: 'home'}" class="app-bar__title-link">
+        Simply Notes
+      </router-link>
+    </h1>
   </div>
 </template>
 
@@ -27,7 +31,8 @@ export default {
 .app-bar {
   display: flex;
   position: sticky;
-  padding: 1rem;
+  margin: calc(var(--spacing) * 0.5);
+  padding: calc(var(--spacing) * 0.5);
   top: 0;
   left: 0;
   right: 0;
@@ -42,5 +47,12 @@ export default {
   margin: 0;
   font-size: 1.2rem;
   font-weight: normal;
+  text-transform: uppercase;
+}
+
+.app-bar__title-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 </style>

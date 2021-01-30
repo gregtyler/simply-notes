@@ -9,6 +9,7 @@
     <path v-if="type === 'document'" d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/>
     <path v-if="type === 'menu'" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
     <path v-if="type === 'home'" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    <path v-if="type === 'close'" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
     <path d="M0 0h24v24H0z" fill="none"/>
   </svg>
 </template>

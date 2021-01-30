@@ -16,7 +16,7 @@
       </UiButton>
     </ButtonGroup>
 
-    <ActionButton slot="button" :to="{name: 'edit', id: note.id}" icon="edit" />
+    <ActionButton slot="button" :to="{name: 'edit', id: note.id}" icon="edit">Edit</ActionButton>
 
     <ModalDialog v-model="showConfirmDelete" dismiss-label="Cancel">
       <template slot="title">Confirm Delete</template>
@@ -95,6 +95,7 @@ export default {
 
 <style lang="css">
 .note__body {
+  margin: 0;
   white-space: pre-wrap;
   user-select: text;
   -ms-user-select: text;

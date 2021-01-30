@@ -44,8 +44,7 @@ export default {
 
 <style lang="css">
 .card {
-  padding: .5rem;
-  background-color: #FFF;
+  padding: var(--spacing);
 }
 
 .card--fullscreen {
@@ -74,24 +73,9 @@ export default {
   margin-left: .5rem;
 }
 
-/* Preview variant */
 .card--preview {
-  position: relative;
-  max-height: 25vh;
-  overflow: hidden;
-}
-
-.card--preview > .card__body {
-  pointer-events: none;
-}
-
-.card--preview::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 2rem;
-  background: linear-gradient(to top, #FFF, transparent);
+  margin-bottom: var(--spacing);
+  text-shadow: 0 0 10px hsla(0, 0%, 100%, 0.4);
+  background-color: hsla(0, 0%, 25%, 0.5);
 }
 </style>
