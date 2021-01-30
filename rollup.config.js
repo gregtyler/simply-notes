@@ -5,22 +5,29 @@ import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify';
-import swPrecache from 'sw-precache';
+import workboxBuild from 'workbox-build';
 
 /**
  * A rollup plugin to generate the service worker file
  */
-function swPrecacheGen() {
+function workbox() {
   return {
-    name: 'sw-precache',
+    name: 'workbox-build',
     onwrite: function() {
-      return new Promise((resolve) => {
-        const rootDir = 'public';
-        swPrecache.write(`${rootDir}/sw.js`, {
-          staticFileGlobs: [rootDir + '/**/*.{js,html,css,webmanifest,png}'],
-          stripPrefix: rootDir,
-          replacePrefix: (process.env.SUBDIRECTORY ? `/${process.env.SUBDIRECTORY}` : '')
-        }, resolve);
+      const rootDir = 'public';
+      const modifyURLPrefix = {
+        [rootDir]: ''
+      };
+
+      if (process.env.SUBDIRECTORY) {
+        modifyURLPrefix[`/${process.env.SUBDIRECTORY}`] = '';
+      }
+
+      return workboxBuild.generateSW({
+        swDest: `${rootDir}/sw.js`,
+        globDirectory: rootDir,
+        globPatterns: ['**/*.{js,html,css,webmanifest,png}'],
+        modifyURLPrefix
       });
     }
   };
@@ -55,6 +62,6 @@ export default {
     vue({ css: false }),
     resolve(),
     process.env.BUILD === 'production' ? uglify() : nullPlugin(),
-    swPrecacheGen()
+    workbox()
   ]
 };

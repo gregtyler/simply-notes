@@ -1,5 +1,7 @@
 node_modules
-public/bundle.css
-public/bundle.js
-public/bundle.js.map
-public/sw.js
+
+public
+!public/index.html
+!public/offline.html
+!public/manifest.webmanifest
+!public/images
