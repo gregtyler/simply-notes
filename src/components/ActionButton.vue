@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="css">
-.btn--action {
+.btn.btn--action {
   display: flex;
   align-items: center;
   justify-content: center;

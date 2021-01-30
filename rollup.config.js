@@ -1,5 +1,4 @@
 /* eslint-env node */
-import css from 'rollup-plugin-css-only';
 import json from 'rollup-plugin-json';
 import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
@@ -58,8 +57,7 @@ export default {
     json({
       preferConst: true
     }),
-    css(),
-    vue({ css: false }),
+    vue(),
     resolve(),
     process.env.BUILD === 'production' ? uglify() : nullPlugin(),
     workbox()
