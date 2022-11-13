@@ -27,6 +27,6 @@
     "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.12",
     "vuex": "^3.6.2",
-    "workbox-build": "^6.1.0"
+    "workbox-build": "^6.5.4"
   }
 }
