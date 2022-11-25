@@ -6,34 +6,34 @@
 </template>
 
 <script>
-import UiIcon from './UiIcon.vue';
-import UiButton from './UiButton.vue';
+import UiIcon from "./UiIcon.vue";
+import UiButton from "./UiButton.vue";
 
 export default {
   components: {
     UiIcon,
-    UiButton
+    UiButton,
   },
   props: {
     to: {
       type: Object,
       default: null,
-      required: false
+      required: false,
     },
     icon: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     doAction() {
       if (this.to) {
         this.$router.push(this.to);
       } else {
-        this.$emit('click');
+        this.$emit("click");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

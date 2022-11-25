@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import ToastNotification from './components/ToastNotification.vue';
+import Vue from "vue";
+import ToastNotification from "./components/ToastNotification.vue";
 
 /**
  * Show a toast notification
@@ -11,7 +11,7 @@ export default function toast(body, props = {}) {
   props.body = body;
   const ToastComponent = Vue.extend(ToastNotification);
   new ToastComponent({
-    el: document.createElement('div'),
-    propsData: props
+    el: document.createElement("div"),
+    propsData: props,
   });
 }

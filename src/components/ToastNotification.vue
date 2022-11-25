@@ -1,6 +1,15 @@
 <template>
-  <div :class="{toast: true, 'toast--danger': danger, 'toast--autohide': !persist}" aria-live="polite" @animationend="removeIfFinished" ref="toast">
-    {{body}}
+  <div
+    :class="{
+      toast: true,
+      'toast--danger': danger,
+      'toast--autohide': !persist,
+    }"
+    aria-live="polite"
+    @animationend="removeIfFinished"
+    ref="toast"
+  >
+    {{ body }}
   </div>
 </template>
 
@@ -10,43 +19,43 @@
  * vue-bulma-notification package, which cleverly handled creating notifications
  * without a space to mount and automatically generating `.notification-area`
  */
-import Vue from 'vue';
+import Vue from "vue";
 
 export default {
   props: {
     body: {
       type: String,
-      required: true
+      required: true,
     },
     persist: {
       type: Boolean,
-      default: false
+      default: false,
     },
     container: {
       type: String,
-      default: '.notification-area'
+      default: ".notification-area",
     },
     danger: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  created: function() {
+  created: function () {
     let $parent = this.$parent;
     if (!$parent) {
       let parent = document.querySelector(this.container);
       if (!parent) {
         // Lazy create `div.notification-area` container if it doesn't yet exist
-        const className = this.container.replace('.', '');
+        const className = this.container.replace(".", "");
         const Notifications = Vue.extend({
-          name: 'Notifications',
-          render: function(createElement) {
-            return createElement('div', {
+          name: "Notifications",
+          render: function (createElement) {
+            return createElement("div", {
               class: {
-                [`${className}`]: true
-              }
+                [`${className}`]: true,
+              },
             });
-          }
+          },
         });
         $parent = new Notifications().$mount();
         document.body.appendChild($parent.$el);
@@ -59,44 +68,46 @@ export default {
       /* eslint-enable */
     }
   },
-  mounted: function() {
+  mounted: function () {
     if (this.$_parent_) {
       this.$_parent_.$el.appendChild(this.$el);
       this.$parent = this.$_parent_;
       delete this.$_parent_;
     }
   },
-  destroyed: function() {
+  destroyed: function () {
     this.$el.parentElement.removeChild(this.$el);
   },
   methods: {
-    removeIfFinished: function() {
+    removeIfFinished: function () {
       // When the toast finishes an animation which makes it invisible, destroy the DOM element
-      if (parseInt(window.getComputedStyle(this.$refs.toast).opacity, 10) === 0) {
+      if (
+        parseInt(window.getComputedStyle(this.$refs.toast).opacity, 10) === 0
+      ) {
         this.$destroy();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style media="screen">
 @keyframes toast-enter {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes toast-exit {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .notification-area {
@@ -119,21 +130,21 @@ export default {
   left: 1rem;
   min-width: 300px;
   max-width: 400px;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
   background-color: #333;
-  color: #FFF;
-  font-size: .8rem;
+  color: #fff;
+  font-size: 0.8rem;
   transform: translateZ(0);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  animation: toast-enter .25s ease-out
+  animation: toast-enter 0.25s ease-out;
 }
 
 .toast--autohide {
-  animation: toast-enter .25s ease-out, toast-exit .5s 2.25s ease-out forwards
+  animation: toast-enter 0.25s ease-out, toast-exit 0.5s 2.25s ease-out forwards;
 }
 
 .toast--danger {
-    background-color: #d9534f
+  background-color: #d9534f;
 }
 </style>
