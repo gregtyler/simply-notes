@@ -1,7 +1,17 @@
 <template>
-  <div :class="{modal: true, 'modal--visible': isOpen}" role="dialog" @click.self="close">
+  <div
+    :class="{ modal: true, 'modal--visible': isOpen }"
+    role="dialog"
+    @click.self="close"
+  >
     <div class="modal__backdrop" />
-    <div class="modal__dialog" ref="modal" aria-modal="true" :aria-labelledby="`vue-${_uid}-title`" @keydown="keyHandle">
+    <div
+      class="modal__dialog"
+      ref="modal"
+      aria-modal="true"
+      :aria-labelledby="`vue-${_uid}-title`"
+      @keydown="keyHandle"
+    >
       <div class="modal-content">
         <div class="modal__header">
           <h4 :id="`vue-${_uid}-title`" class="modal__title">
@@ -12,7 +22,9 @@
           <slot />
         </div>
         <div class="modal__footer">
-          <UiButton v-if="dismissLabel" @click="close">{{ dismissLabel }}</UiButton>
+          <UiButton v-if="dismissLabel" @click="close">{{
+            dismissLabel
+          }}</UiButton>
           <slot name="button" />
         </div>
       </div>
@@ -21,69 +33,73 @@
 </template>
 
 <script type="text/javascript">
-import vue from 'vue';
-import UiButton from './UiButton.vue';
+import vue from "vue";
+import UiButton from "./UiButton.vue";
 
 export default {
   components: {
-    UiButton
+    UiButton,
   },
   model: {
-    prop: 'isOpen'
+    prop: "isOpen",
   },
   props: {
     dismissLabel: {
       type: String,
-      default: 'Close'
+      default: "Close",
     },
     isOpen: {
       type: Boolean,
       default: false,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
-    initialFocus: null
+    initialFocus: null,
   }),
   watch: {
-    isOpen: function(val) {
+    isOpen: function (val) {
       const _this = this;
       if (val === true) {
         this.initialFocus = document.activeElement;
-        vue.nextTick(function() {
+        vue.nextTick(function () {
           _this.$refs.modal.focus();
         });
 
-        document.body.style.overflowY = 'hidden';
+        document.body.style.overflowY = "hidden";
         this.enforceFocus();
       } else {
-        document.body.style.overflowY = '';
+        document.body.style.overflowY = "";
         this.deforceFocus();
         this.initialFocus.focus();
       }
-    }
+    },
   },
   methods: {
-    close: function() {
-      this.$emit('input', false);
+    close: function () {
+      this.$emit("input", false);
     },
-    keyHandle: function(event) {
-      if (event.code === 'Escape' || event.which === 27) {
+    keyHandle: function (event) {
+      if (event.code === "Escape" || event.which === 27) {
         this.close();
       }
     },
-    enforceFocus: function() {
-      document.addEventListener('focusin', this.focusLock);
+    enforceFocus: function () {
+      document.addEventListener("focusin", this.focusLock);
     },
-    deforceFocus: function() {
-      document.removeEventListener('focusin', this.focusLock);
+    deforceFocus: function () {
+      document.removeEventListener("focusin", this.focusLock);
     },
-    focusLock: function(event) {
-      if (event.target !== document && this.$refs.modal && !this.$refs.modal.contains(event.target)) {
+    focusLock: function (event) {
+      if (
+        event.target !== document &&
+        this.$refs.modal &&
+        !this.$refs.modal.contains(event.target)
+      ) {
         this.$refs.modal.focus();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -117,7 +133,7 @@ export default {
   position: fixed;
   will-change: opacity;
   background-color: hsla(0, 0%, 0%, 0.5);
-  -webkit-tap-highlight-color: transparent
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modal__dialog {
@@ -130,7 +146,8 @@ export default {
   overflow-y: auto;
   flex-direction: column;
   background-color: hsla(0, 0%, 25%, 0.5);
-  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
 
 .modal__header {
@@ -159,6 +176,6 @@ export default {
 }
 
 .modal__footer > * + * {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 </style>

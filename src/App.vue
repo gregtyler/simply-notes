@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import AppBar from './components/AppBar.vue';
-import AppMenu from './components/AppMenu.vue';
+import AppBar from "./components/AppBar.vue";
+import AppMenu from "./components/AppMenu.vue";
 
 export default {
   components: {
     AppBar,
-    AppMenu
+    AppMenu,
   },
   data: () => ({
-    showMenu: false
-  })
+    showMenu: false,
+  }),
 };
 </script>
 

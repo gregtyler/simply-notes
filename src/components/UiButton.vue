@@ -1,5 +1,7 @@
 <template>
-  <button :class="`btn btn--${flavour}`" type="button" @click="doAction"><slot /></button>
+  <button :class="`btn btn--${flavour}`" type="button" @click="doAction">
+    <slot />
+  </button>
 </template>
 
 <script>
@@ -7,35 +9,35 @@ export default {
   props: {
     flavour: {
       type: String,
-      default: 'default',
-      required: false
+      default: "default",
+      required: false,
     },
     to: {
       type: Object,
       default: null,
-      required: false
-    }
+      required: false,
+    },
   },
   methods: {
     doAction() {
       if (this.to) {
         this.$router.push(this.to);
       } else {
-        this.$emit('click');
+        this.$emit("click");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="css">
 .btn {
-  padding: .7rem 1.4rem;
+  padding: 0.7rem 1.4rem;
   border: none;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   font-size: 1rem;
   font-family: inherit;
-  box-shadow: 0 0 2px hsla(0, 0%, 0%, .12), 0 2px 2px hsla(0, 0%, 0%, .2);
+  box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.12), 0 2px 2px hsla(0, 0%, 0%, 0.2);
 }
 
 .btn--default {
@@ -54,6 +56,10 @@ export default {
 }
 
 .btn:active {
-  background-image: linear-gradient(to left, hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.2));
+  background-image: linear-gradient(
+    to left,
+    hsla(0, 0%, 0%, 0.2),
+    hsla(0, 0%, 0%, 0.2)
+  );
 }
 </style>

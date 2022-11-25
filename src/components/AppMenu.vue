@@ -1,15 +1,35 @@
 <template>
   <div class="app-menu__container">
-    <div :class="{'app-menu__backdrop': true, 'app-menu__backdrop--visible': visible}" @click.self="$emit('close')" />
+    <div
+      :class="{
+        'app-menu__backdrop': true,
+        'app-menu__backdrop--visible': visible,
+      }"
+      @click.self="$emit('close')"
+    />
 
-    <menu :class="{'app-menu': true, 'app-menu--visible': visible}">
+    <menu :class="{ 'app-menu': true, 'app-menu--visible': visible }">
       <li>
-        <router-link :to="{name: 'home'}" :class="{'app-menu__action': true, 'app-menu__action--active': $route.name === 'home'}" @click.native="$emit('close')">
+        <router-link
+          :to="{ name: 'home' }"
+          :class="{
+            'app-menu__action': true,
+            'app-menu__action--active': $route.name === 'home',
+          }"
+          @click.native="$emit('close')"
+        >
           <UiIcon type="home" /> Home
         </router-link>
       </li>
       <li>
-        <router-link :to="{name: 'archive'}" :class="{'app-menu__action': true, 'app-menu__action--active': $route.name === 'archive'}" @click.native="$emit('close')">
+        <router-link
+          :to="{ name: 'archive' }"
+          :class="{
+            'app-menu__action': true,
+            'app-menu__action--active': $route.name === 'archive',
+          }"
+          @click.native="$emit('close')"
+        >
           <UiIcon type="archive" /> Archive
         </router-link>
       </li>
@@ -23,18 +43,18 @@
 </template>
 
 <script>
-import UiIcon from './UiIcon.vue';
+import UiIcon from "./UiIcon.vue";
 
 export default {
   components: {
-    UiIcon
+    UiIcon,
   },
   props: {
     visible: {
       type: Boolean,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -74,7 +94,7 @@ export default {
   list-style-type: none;
   z-index: 1305;
   transform: translateX(-100%);
-  transition: transform ease-in-out .4s;
+  transition: transform ease-in-out 0.4s;
 }
 
 .app-menu--visible {

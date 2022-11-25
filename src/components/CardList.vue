@@ -14,7 +14,7 @@ export default {};
 }
 
 .card-list > .card {
-  border-radius: .1rem;
-  box-shadow: 0 2px .25rem hsla(0, 0%, 0%, 0.1);
+  border-radius: 0.1rem;
+  box-shadow: 0 2px 0.25rem hsla(0, 0%, 0%, 0.1);
 }
 </style>

@@ -1,6 +1,12 @@
 <template>
   <label class="ui-checkbox">
-    <input :checked="checked" :disabled="disabled" type="checkbox" class="ui-checkbox__input" @change="$emit('input', $event.target.checked)">
+    <input
+      :checked="checked"
+      :disabled="disabled"
+      type="checkbox"
+      class="ui-checkbox__input"
+      @change="$emit('input', $event.target.checked)"
+    />
     <slot />
   </label>
 </template>
@@ -8,18 +14,18 @@
 <script type="text/javascript">
 export default {
   model: {
-    prop: 'checked'
+    prop: "checked",
   },
   props: {
     checked: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>
 
@@ -43,11 +49,11 @@ export default {
   font-size: inherit;
   outline: 0;
   cursor: pointer;
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  -ms-appearance:none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
-  transition: .05s border-color ease-in-out;
+  transition: 0.05s border-color ease-in-out;
 }
 
 .ui-checkbox__input:focus {
@@ -56,14 +62,14 @@ export default {
 }
 
 .ui-checkbox__input::before {
-  content: '';
+  content: "";
   color: var(--color-highlight);
-  transition: color .1s linear, background-color .1s linear;
+  transition: color 0.1s linear, background-color 0.1s linear;
   speak: none;
 }
 
 .ui-checkbox__input[disabled] {
-  background: #EAEAEA;
+  background: #eaeaea;
   cursor: not-allowed;
 }
 

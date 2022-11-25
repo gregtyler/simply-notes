@@ -1,11 +1,11 @@
 <template>
   <div class="app-bar">
-    <div @click="$emit('toggleMenu')" style="display: flex;">
-      <UiIcon type="menu" style="height: 1.5rem;" />
+    <div @click="$emit('toggleMenu')" style="display: flex">
+      <UiIcon type="menu" style="height: 1.5rem" />
     </div>
     &nbsp;
     <h1 class="app-bar__title">
-      <router-link :to="{name: 'home'}" class="app-bar__title-link">
+      <router-link :to="{ name: 'home' }" class="app-bar__title-link">
         Simply Notes
       </router-link>
     </h1>
@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import UiIcon from './UiIcon.vue';
+import UiIcon from "./UiIcon.vue";
 
 export default {
   components: {
-    UiIcon
+    UiIcon,
   },
   computed: {
     showArchive() {
-      return this.$route.name === 'home';
-    }
-  }
+      return this.$route.name === "home";
+    },
+  },
 };
 </script>
 
@@ -38,7 +38,7 @@ export default {
   right: 0;
   background-color: var(--color-primary);
   color: var(--color-primary-text);
-  box-shadow: 0 2px .25rem hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 2px 0.25rem hsla(0, 0%, 0%, 0.2);
   align-items: center;
 }
 
