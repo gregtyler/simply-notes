@@ -18976,21 +18976,6 @@ export default {
       });
     });
   }
-  var _paq = [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-  (function() {
-    var u = "https://analytics.gregtyler.co.uk/";
-    _paq.push(["setTrackerUrl", u + "piwik.php"]);
-    _paq.push(["setSiteId", "6"]);
-    const script = document.createElement("script");
-    const firstScript = document.getElementsByTagName("script")[0];
-    script.type = "text/javascript";
-    script.async = true;
-    script.defer = true;
-    script.src = u + "piwik.js";
-    firstScript.parentNode.insertBefore(script, firstScript);
-  })();
   new Vue({
     router,
     store: store_default,
